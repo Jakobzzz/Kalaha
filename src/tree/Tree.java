@@ -96,7 +96,7 @@ public class Tree
                 bestValue = children[i].key;
             
             //Min value
-            if(bestValue == 0 || (children[i].key < bestValue && m_type == 2))
+            if((bestValue == 0 && m_type == 2) || (children[i].key < bestValue && m_type == 2))
                 bestValue = children[i].key;
         } 
         
