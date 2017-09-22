@@ -234,7 +234,7 @@ public class AIClient implements Runnable
     {
         Tree tree = new Tree(type);
            
-        //Build tree with deep level 4
+        //Build tree with depth level 5
         for(int i = 0; i < 5; i++)
             tree.BuildTree(getRandom());
            
