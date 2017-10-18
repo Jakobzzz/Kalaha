@@ -15,14 +15,10 @@ package tree;
 public class Tree 
 {
     private Node m_root;
-    private int m_bestValue;
-    private int m_type;
-    
+
     public Tree(int type)
     {
         this.m_root = null;
-        this.m_bestValue = 0;
-        this.m_type = type;
     }
     
     public void BuildTree(int key)
@@ -63,43 +59,43 @@ public class Tree
         return children;
     }
     
-    public int DFS()
-    {
-        if(m_root != null)
-            DFS(m_root);
-        
-        return m_bestValue;
-    }
+//    public int DFS()
+//    {
+//        if(m_root != null)
+//            DFS(m_root);
+//        
+//        return m_bestValue;
+//    }
     
-    private void DFS(Node node)
-    {
-        if(node.children != null)
-        {
-            for(int i = 0; i < node.children.length; i++)
-            {
-                if(node.children[i].children != null)
-                    DFS(node.children[i]);
-                else
-                    m_bestValue = MinMaxSearch(node.children, m_bestValue);
-            }
-        }
-    }
+//    private void DFS(Node node)
+//    {
+//        if(node.children != null)
+//        {
+//            for(int i = 0; i < node.children.length; i++)
+//            {
+//                if(node.children[i].children != null)
+//                    DFS(node.children[i]);
+//                else
+//                    m_bestValue = MinMaxSearch(node.children, m_bestValue);
+//            }
+//        }
+//    }
     
-    private int MinMaxSearch(Node[] children, int minMaxValue)
-    {
-        int bestValue = minMaxValue;
-        
-        for(int i = 0; i < children.length; i++)
-        {
-            //Max value
-            if(children[i].key > bestValue && m_type == 1)
-                bestValue = children[i].key;
-            
-            //Min value
-            if((bestValue == 0 && m_type == 2) || (children[i].key < bestValue && m_type == 2))
-                bestValue = children[i].key;
-        } 
-        
-        return bestValue;
-    }
+//    private int MinMaxSearch(Node[] children, int minMaxValue)
+//    {
+//        int bestValue = minMaxValue;
+//        
+//        for(int i = 0; i < children.length; i++)
+//        {
+//            //Max value
+//            if(children[i].key > bestValue && m_type == 1)
+//                bestValue = children[i].key;
+//            
+//            //Min value
+//            if((bestValue == 0 && m_type == 2) || (children[i].key < bestValue && m_type == 2))
+//                bestValue = children[i].key;
+//        } 
+//        
+//        return bestValue;
+//    }
 }
