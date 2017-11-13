@@ -229,7 +229,7 @@ public class AIClient implements Runnable
     public int getMove(GameState currentBoard)
     {
         //Build to depth level 2
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 7; i++)
         {
             BuildTree(currentBoard.clone());
         }
@@ -245,51 +245,13 @@ public class AIClient implements Runnable
         {
             if (m_root.board.getNextPlayer() == 1) 
             {
-                int playerOneScore = m_root.board.getScore(1);
-                int playerTwoScore = m_root.board.getScore(2);
-
-                if (playerOneScore > playerTwoScore) 
-                {
-                    if (m_root.children.get(p).key < m_root.key) 
-                    {
-                        m_root.key = m_root.children.get(p).key;
-                    }
-                } 
-                else if (playerOneScore < playerTwoScore) 
-                {
-                    if (m_root.children.get(p).key > m_root.key) 
-                    {
-                        m_root.key = m_root.children.get(p).key;
-                    }
-                }
-                else 
-                {
+                if (m_root.children.get(p).key > m_root.key) 
                     m_root.key = m_root.children.get(p).key;
-                }
             }
             if (m_root.board.getNextPlayer() == 2) 
             {
-                int playerOneScore = m_root.board.getScore(1);
-                int playerTwoScore = m_root.board.getScore(2);
-
-                if (playerOneScore < playerTwoScore) 
-                {
-                    if (m_root.children.get(p).key < m_root.key) 
-                    {
-                        m_root.key = m_root.children.get(p).key;
-                    }
-                } 
-                else if (playerOneScore > playerTwoScore) 
-                {
-                    if (m_root.children.get(p).key > m_root.key) 
-                    {
-                        m_root.key = m_root.children.get(p).key;
-                    }
-                } 
-                else 
-                {
+                if (m_root.children.get(p).key < m_root.key) 
                     m_root.key = m_root.children.get(p).key;
-                }
             }
             
             if(m_root.key == m_root.children.get(p).key)
@@ -325,43 +287,13 @@ public class AIClient implements Runnable
             {
                 if (node.board.getNextPlayer() == 1)
                 {
-                    int playerOneScore = node.board.getScore(1);
-                    int playerTwoScore = node.board.getScore(2);
-                    
-                    if (playerOneScore > playerTwoScore)
-                    {
-                        if (node.key < MinMax(node.children.get(i)))
-                            node.key = MinMax(node.children.get(i));                       
-                    }
-                    else if (playerOneScore < playerTwoScore)
-                    {
-                        if (node.key > MinMax(node.children.get(i)))
-                            node.key = MinMax(node.children.get(i));                             
-                    }
-                    else
-                    {
-                        node.key = MinMax(node.children.get(i));
-                    }
+                    if (node.key < MinMax(node.children.get(i)))
+                        node.key = MinMax(node.children.get(i));                             
                 }               
                 if (node.board.getNextPlayer() == 2)
                 {
-                    int playerOneScore = node.board.getScore(1);
-                    int playerTwoScore = node.board.getScore(2);
-                    
-                    if (playerOneScore < playerTwoScore)
-                    {
-                        if (node.key < MinMax(node.children.get(i)))
-                            node.key = MinMax(node.children.get(i));                       
-                    }
-                    else if (playerOneScore > playerTwoScore)
-                    {
-                        if (node.key > MinMax(node.children.get(i)))
-                            node.key = MinMax(node.children.get(i));                             
-                    }
-                    else
-                    {
-                        node.key = MinMax(node.children.get(i));
-                    }
+                    if (node.key > MinMax(node.children.get(i)))
+                        node.key = MinMax(node.children.get(i));                       
                 }               
             }         
         }
